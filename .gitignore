@@ -1,0 +1,30 @@
+# Compiled object files
+*.o
+*.obj
+
+# Static & dynamic libraries
+*.a
+*.so
+*.dylib
+*.dll
+*.lib
+
+# Executables
+a.out
+*.exe
+tests
+
+# Debug / profiling
+*.gch
+*.gcda
+*.gcno
+*.gcov
+*.out
+vgcore.*
+
+# macOS / Windows stuff
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
