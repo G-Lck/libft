@@ -43,34 +43,21 @@ LIB_SRCS = ft_atoi.c \
 	ft_strtrim.c \
 	ft_substr.c \
 	ft_tolower.c \
-	ft_toupper.c
+	ft_toupper.c \
 
 
 LIB_OBJS = $(LIB_SRCS:.c=.o)
 
-# Tests
-TEST_SRCS = main.c tests.c
-TEST_OBJS = $(TEST_SRCS:.c=.o)
-TEST_EXEC = tests
-
-# Compilation de la lib statique
 $(NAME): $(LIB_OBJS)
 	ar rcs $(NAME) $(LIB_OBJS)
 
-# Compilation des objets
 %.o: %.c
-	cc $(FLAGS) -c $< -o $@
+	gcc $(FLAGS) -c $< -o $@ 
 
-# Compilation de l'exécutable de test
-$(TEST_EXEC): $(NAME) $(TEST_OBJS)
-	cc $(FLAGS) $(TEST_OBJS) -L. -lft -o $(TEST_EXEC)
-
-# Compilation de la lib partagée
 so: $(LIB_OBJS)
-	cc -fPIC -shared -o libft.so $(LIB_OBJS)
+	gcc -fPIC -shared -o libft.so $(LIB_OBJS)
 
-# Règles standards
-all: $(NAME) $(TEST_EXEC)
+all: $(NAME)
 
 clean:
 	rm -f $(LIB_OBJS) $(TEST_OBJS)
