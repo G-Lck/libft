@@ -1,7 +1,17 @@
-# Lib
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: glucken <glucken@ent.42lausanne.ch>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/09/30 17:29:57 by glucken           #+#    #+#              #
+#    Updated: 2025/09/30 17:29:57 by glucken          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
-FLAGS = -Wall -Wextra -Werror
-LIB_SRCS = ft_atoi.c \
+SRCS = ft_atoi.c \
 	ft_bzero.c \
 	ft_calloc.c \
 	ft_isalnum.c \
@@ -10,15 +20,6 @@ LIB_SRCS = ft_atoi.c \
 	ft_isdigit.c \
 	ft_isprint.c \
 	ft_itoa.c \
-	ft_lstadd_back.c \
-	ft_lstadd_front.c \
-	ft_lstclear.c \
-	ft_lstdelone.c \
-	ft_lstiter.c \
-	ft_lstlast.c \
-	ft_lstmap.c \
-	ft_lstnew.c \
-	ft_lstsize.c \
 	ft_memchr.c \
 	ft_memcmp.c \
 	ft_memcpy.c \
@@ -43,27 +44,40 @@ LIB_SRCS = ft_atoi.c \
 	ft_strtrim.c \
 	ft_substr.c \
 	ft_tolower.c \
-	ft_toupper.c \
+	ft_toupper.c 
 
+SRCS_B = ft_lstadd_back.c \
+	ft_lstadd_front.c \
+	ft_lstclear.c \
+	ft_lstdelone.c \
+	ft_lstiter.c \
+	ft_lstlast.c \
+	ft_lstmap.c \
+	ft_lstnew.c \
+	ft_lstsize.c \
 
-LIB_OBJS = $(LIB_SRCS:.c=.o)
+OBJS = ${SRCS:.c=.o}
+OBJS_B = ${SRCS_B:.c=.o}
+INCLUDE = libft.h
+CC = gcc
+RM = rm -f
+CFLAGS = -Wall -Wextra -Werror
 
-$(NAME): $(LIB_OBJS)
-	ar rcs $(NAME) $(LIB_OBJS)
+.c.o :
+	${CC} ${CFLAGS} -c $< -o $(<:.c=.o)
 
-%.o: %.c
-	gcc $(FLAGS) -c $< -o $@ 
+all : ${NAME}
 
-so: $(LIB_OBJS)
-	gcc -fPIC -shared -o libft.so $(LIB_OBJS)
+${NAME} : ${OBJS}
+	ar rc ${NAME} ${OBJS}
 
-all: $(NAME)
+bonus: ${OBJS_B} ${OBJS}
+	ar rc ${NAME} ${OBJS} ${OBJS_B}
 
 clean:
-	rm -f $(LIB_OBJS) $(TEST_OBJS)
+	${RM} ${OBJS} ${OBJS_B}
 
 fclean: clean
-	rm -f $(NAME) $(TEST_EXEC) libft.so
+	${RM} ${NAME}
 
 re: fclean all
-
