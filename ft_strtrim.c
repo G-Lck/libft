@@ -12,20 +12,6 @@
 
 #include "./libft.h"
 
-int	is_in(char const c, char const *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < ft_strlen(s))
-	{
-		if (s[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	start;

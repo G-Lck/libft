@@ -12,14 +12,6 @@
 
 #include "./libft.h"
 
-size_t	min(size_t a, size_t b)
-{
-	if (a < b)
-		return (a);
-	else
-		return (b);
-}
-
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*subs;

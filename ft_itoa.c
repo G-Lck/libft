@@ -12,14 +12,14 @@
 
 #include "./libft.h"
 
-int	absval(int n)
+static int	absval(int n)
 {
 	if (n < 0)
 		return (-n);
 	return (n);
 }
 
-size_t	get_size(int n)
+static size_t	get_size(int n)
 {
 	size_t	len;
 
